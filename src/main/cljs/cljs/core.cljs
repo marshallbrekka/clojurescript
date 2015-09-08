@@ -2967,12 +2967,13 @@ reduces them without incurring seq initialization"
   ([name] (cond
             (keyword? name) name
             (symbol? name) (Keyword.
-                             (cljs.core/namespace name)
-                             (cljs.core/name name) (.-str name) nil)
-            (string? name) (let [parts (.split name "/")]
-                             (if (== (alength parts) 2)
-                               (Keyword. (aget parts 0) (aget parts 1) name nil)
-                               (Keyword. nil (aget parts 0) name nil)))))
+                            (cljs.core/namespace name)
+                            (cljs.core/name name) (.-str name) nil)
+            (string? name) (let [idx (.indexOf name "/")]
+                             (if (== idx -1)
+                               (Keyword. nil name)
+                               (Keyword. (.substring name 0 idx)
+                                         (.substring name (inc idx) (. name -length)))))))
   ([ns name] (Keyword. ns name (str (when ns (str ns "/")) name) nil)))
 
 

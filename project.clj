@@ -1,4 +1,4 @@
-(defproject org.clojure/clojurescript "0.0-SNAPSHOT"
+(defproject marshallbrekka/clojurescript "1.7-keywordfix"
   :description "ClojureScript compiler and core runtime library"
   :parent [org.clojure/pom.contrib "0.1.2"]
   :url "https://github.com/clojure/clojurescript"
